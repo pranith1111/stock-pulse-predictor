@@ -3,12 +3,15 @@ services:
     name: stock-pulse-predictor
     env: node
     plan: free
-    buildCommand: npm install --include=dev && npm run build
+    buildCommand: |
+      npm ci
+      npm install vite --save-dev
+      npm run build
     startCommand: node dist/index.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: MONGO_URI
+        sync: false
       - key: PORT
         value: 10000
-      - key: MONGO_URI
-        sync: false  # Set in Render dashboard for security
