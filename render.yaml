@@ -1,17 +1,13 @@
-# Exported from Render on 2025-10-28T19:33:01Z
 version: "1"
 services:
-- type: web
-  name: stock-pulse-predictor-1
-  runtime: node
-  repo: https://github.com/pranith1111/stock-pulse-predictor
-  plan: free
-  envVars:
-  - key: MONGO_URL
-    sync: false
-  - key: NODE_ENV
-    sync: false
-  region: oregon
-  buildCommand: npm install; npm run build
-  startCommand: npm run start
-  autoDeployTrigger: commit
+  - type: web
+    name: stock-pulse-predictor-1
+    env: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URL
+        sync: false
