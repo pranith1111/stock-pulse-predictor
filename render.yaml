@@ -3,15 +3,10 @@ services:
     name: stock-pulse-predictor
     env: node
     plan: free
-    buildCommand: |
-      npm install --include=dev
-      npx vite build
-      npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/index.js
+    buildCommand: npm install --include=dev && npm run build
     startCommand: node dist/index.js
     envVars:
       - key: NODE_ENV
-        value: development
-      - key: PORT
-        value: 10000
+        value: production
       - key: MONGO_URI
         sync: false
