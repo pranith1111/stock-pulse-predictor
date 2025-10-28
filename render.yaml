@@ -1,7 +1,7 @@
 version: "1"
 services:
   - type: web
-    name: stock-pulse-predictor-1
+    name: stock-pulse-predictor
     env: node
     plan: free
     buildCommand: npm install --include=dev && npm run build
